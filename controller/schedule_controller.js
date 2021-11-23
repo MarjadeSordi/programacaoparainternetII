@@ -24,7 +24,7 @@ exports.inserirDados = (req, res, rows) => {
         res.status(401).json({
           msg: "Serviço não existe"
         })
-      } else if (schedule.servico && servico.tipe == 'coloracao') {
+      } else if (schedule.servico === servico.tipe) {
         let date = new Date(schedule.data);
         let dia = date.getDate();
         let dataMonth = date.getMonth();
