@@ -9,4 +9,5 @@ rota.post('/', serviceController.inserir)
 //Roteamento do GET para http://localhost:3000/usuario/buscar
 rota.get('/buscar', serviceController.buscarPorTipe)
 
+
 module.exports = rota;

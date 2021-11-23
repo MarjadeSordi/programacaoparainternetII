@@ -30,11 +30,11 @@ exports.inserir = (schedule, callback) => {
 exports.buscarPorNome = (nomesocial, callback) => {
   const sql = "SELECT * FROM schedule WHERE nomesocial=?;";
   const values = [nomesocial]
-  con.query(sql, values, (err, res) => {
+  con.query(sql, values, (err, rows) => {
     if (err) {
       callback(err, null);
-    } else if (res) {
-      callback(null, res);
+    } else if (rows[0]) {
+      callback(null,rows[0]);
     } else {
       const error = "Agendamento não encontrado";
       callback(error, null);
@@ -44,9 +44,25 @@ exports.buscarPorNome = (nomesocial, callback) => {
 
 }
 
+exports.buscarPorService = (servico, callback) => {
+  const sql = "SELECT * FROM schedule WHERE servico=?;";
+  const values = [servico]
+  con.query(sql, values, (err, res) => {
+      if (err) {
+          callback(err, null);
+      } else if (res) {
+          callback(null, res);
+      } else {
+          const error = "Tipo de serviço não encontrado";
+          callback(error, null);
+      }
+
+  });
+
+}
+
 exports.editarAgenda = (newhorario, callback) => {
   const sql = "UPDATE schedule set horario =? where id=?";
-  console.log('aqui', newhorario)
   const values = [newhorario.horario, newhorario.id]
   con.query(sql, values, (err, res) => {
     if (err) {

@@ -92,19 +92,19 @@ exports.editarDados = (req, res) => {
 
 
 
-exports.buscarPorTipe = (req, res) => {
+exports.buscarPorService = (req, res) => {
   const query = req.query;
-  if (query && query.tipe) {
-    serviceRepository.buscarPorService(query.tipe, (err, tipeEncontrado) => {
+  if (query && query.servico) {
+    scheduleRepository.buscarPorService(query.servico, (err, servicoEncontrado) => {
       if (err) {
         res.status(500).json({
           msg: err
         })
-      } else if (tipeEncontrado) {
-        res.json(tipeEncontrado);
+      } else if (servicoEncontrado) {
+        res.json(servicoEncontrado);
       } else {
         res.status(404).json({
-          msg: "Tipo não encontrado"
+          msg: "Não tem agendamento para este serviço"
         });
       }
     });
@@ -113,6 +113,33 @@ exports.buscarPorTipe = (req, res) => {
 
     res.status(400).json({
       msg: "Faltou a query tipe"
+    });
+  }
+}
+
+
+
+exports.buscarPorNomeSocial = (req, res) => {
+  const query = req.query;
+  if (query && query.nomesocial) {
+    scheduleRepository.buscarPorNome(query.nomesocial, (err, nomeEncontrado) => {
+      if (err) {
+        res.status(500).json({
+          msg: err
+        })
+      } else if (nomeEncontrado) {
+        res.json(nomeEncontrado);
+      } else {
+        res.status(404).json({
+          msg: "Não tem agendamento para este nome"
+        });
+      }
+    });
+  } else {
+    //Bad Request
+
+    res.status(400).json({
+      msg: "Faltou a query nome social"
     });
   }
 }
