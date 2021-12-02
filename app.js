@@ -1,7 +1,11 @@
 const express = require('express');
 const clientController = require('./controller/client_controller');
+const cors= require('cors');
 const app = express();
 const porta = 3000;
+require('dotenv').config;
+
+app.use(cors());
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({
@@ -24,6 +28,6 @@ const serviceRota = require('./rotas/service_rota');
 app.use('/service', serviceRota);
 
 
-app.listen(porta, () =>
-    console.log(`Iniciando o servidor na porta ${porta}`)
+app.listen(process.env.PORT || 3000, () =>
+    console.log(`Iniciando o servidor na porta ${process.env.PORT}`)
 );
