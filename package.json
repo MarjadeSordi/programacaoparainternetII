@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon ./app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
@@ -17,8 +16,5 @@
     "heroku": "^7.59.2",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.14"
   }
 }
