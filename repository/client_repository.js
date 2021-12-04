@@ -15,6 +15,7 @@ exports.listar = (callback) => {
         callback(err, res);
 
     })
+    con.destroy();
 };
 
 
@@ -25,6 +26,7 @@ exports.inserir = (client, callback) => {
         callback(err, res);
         console.log(err);
     })
+    con.destroy();
 }
 
 
@@ -42,5 +44,5 @@ exports.buscarPorNomeSocial = (nomesocial, callback) => {
         }
 
     });
-
+    con.destroy();
 }
