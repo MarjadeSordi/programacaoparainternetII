@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 require('dotenv').config();
 
-const con = mysql.createConnection({
+const con = mysql.createPool({
     host: process.env.localhost, // O host do banco. Ex: localhost
     user: process.env.user, // Um usuário do banco. Ex: user 
     password: process.env.password, // A senha do usuário. Ex: user123
@@ -13,9 +13,7 @@ const con = mysql.createConnection({
 exports.listar = (callback) => {
     con.query('SELECT * FROM client', (err, res) => {
         callback(err, res);
-
     })
-    con.destroy();
 };
 
 
@@ -26,7 +24,6 @@ exports.inserir = (client, callback) => {
         callback(err, res);
         console.log(err);
     })
-    con.destroy();
 }
 
 
@@ -44,5 +41,4 @@ exports.buscarPorNomeSocial = (nomesocial, callback) => {
         }
 
     });
-    con.destroy();
 }
