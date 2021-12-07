@@ -29,6 +29,11 @@ exports.inserirDados = (req, res, rows) => {
         let dia = date.getDate();
         let dataMonth = date.getMonth();
         let ano4 = date.getFullYear();
+        if (dataMonth == 12) {
+          return dataMonth == 0 }
+        if (dataMonth == 11 && serviceRepository.tipe == 'coloracao'){
+          return dataMonth == 0
+        }
         let findRetouch = (dataMonth + 1) + servico.retouch;
         const str_data = ano4 + '-' + (findRetouch) + '-' + dia;
         const price = servico.price;
